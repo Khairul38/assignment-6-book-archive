@@ -1,8 +1,23 @@
+// Toggle Spinner
+const toggleSpinner = displayStyle => {
+    document.getElementById('spinner').style.display = displayStyle;
+}
+
 // Search Book
 const searchBook = () => {
     const searchField = document.getElementById('search-field');
     const searchText = searchField.value;
+    // Display Spinner
+    toggleSpinner('block');
+
+    // Clear Input Field
     searchField.value = '';
+
+    // Clean Search Result
+    const searchResult = document.getElementById('search-result');
+    searchResult.textContent = '';
+    const searchNumber = document.getElementById('search-number');
+    searchNumber.textContent = '';
 
     // Error Massage
     const emptySearch = document.getElementById('error-massage');
@@ -12,6 +27,7 @@ const searchBook = () => {
         h5.classList.add('text-center', 'text-danger');
         h5.innerText = 'Please Write Any Book Name';
         emptySearch.appendChild(h5);
+        toggleSpinner('none');
     }
     else {
         const url = `https://openlibrary.org/search.json?q=${searchText}`;
@@ -24,7 +40,6 @@ const searchBook = () => {
 // Show Result of Total Result
 const displaySearchNumber = data => {
     const searchNumber = document.getElementById('search-number');
-    searchNumber.textContent = '';
 
     // Error Massage
     const noResult = document.getElementById('error-massage');
@@ -34,6 +49,7 @@ const displaySearchNumber = data => {
         h5.classList.add('text-center', 'text-danger');
         h5.innerText = 'No Result Found';
         noResult.appendChild(h5);
+        toggleSpinner('none');
     }
     else {
         const h5 = document.createElement('h5');
@@ -47,7 +63,6 @@ const displaySearchNumber = data => {
 // Display Book Result
 const displaySearchResult = books => {
     const searchResult = document.getElementById('search-result');
-    searchResult.textContent = '';
     books.forEach(book => {
         const div = document.createElement('div');
         div.classList.add('col');
@@ -64,4 +79,5 @@ const displaySearchResult = books => {
         `;
         searchResult.appendChild(div);
     });
+    toggleSpinner('none');
 }
