@@ -1,8 +1,3 @@
-// Toggle Spinner
-const toggleSpinner = displayStyle => {
-    document.getElementById('spinner').style.display = displayStyle;
-}
-
 // Search Book
 const searchBook = () => {
     const searchField = document.getElementById('search-field');
@@ -35,6 +30,11 @@ const searchBook = () => {
             .then(res => res.json())
             .then(data => displaySearchNumber(data))
     }
+}
+
+// Toggle Spinner
+const toggleSpinner = displayStyle => {
+    document.getElementById('spinner').style.display = displayStyle;
 }
 
 // Show Result of Total Result
