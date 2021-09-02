@@ -2,7 +2,6 @@
 const searchBook = () => {
     const searchField = document.getElementById('search-field');
     const searchText = searchField.value;
-    // console.log(searchText);
     searchField.value = '';
 
     // Error Massage
@@ -16,7 +15,6 @@ const searchBook = () => {
     }
     else {
         const url = `http://openlibrary.org/search.json?q=${searchText}`;
-        // console.log(url);
         fetch(url)
             .then(res => res.json())
             .then(data => displaySearchNumber(data))
@@ -25,7 +23,6 @@ const searchBook = () => {
 
 // Show Result of Total Result
 const displaySearchNumber = data => {
-    console.log(data);
     const searchNumber = document.getElementById('search-number');
     searchNumber.textContent = '';
 
@@ -49,11 +46,9 @@ const displaySearchNumber = data => {
 
 // Display Book Result
 const displaySearchResult = books => {
-    // console.log(books);
     const searchResult = document.getElementById('search-result');
     searchResult.textContent = '';
     books.forEach(book => {
-        console.log(book);
         const div = document.createElement('div');
         div.classList.add('col');
         div.innerHTML = `
